@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 :root {
-    --copy-blue: #3B3B3B;
-    --primary-blue: #A5B3FF;
-    --secondary-blue: #E5EEFF;
+    --copy-blue: #c5c4c3;
+    --primary-blue: #21475a;
+    --secondary-blue: #162F3C;
+    --tertiary-blue: #0E1D25;
 
-    --copy-orange: #6C4801;
-    --primary-orange: #FFC044;
-    --secondary-orange: #FFF8E4;
+    --copy-orange: #dcb4ab;
+    --primary-orange: #852c11;
+    --secondary-orange: #382621;
+    --tertiary-orange: #331600;
 
-    --white: #FFFFFF;
+    --background: #262626;
+    --highlight: #141414;
 
     --outer-radius: 1rem;
     --inner-radius: 0.5rem;
@@ -31,6 +34,7 @@ html{
 
 *{
     box-sizing: border-box;
+    background-color: var(--background);
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
@@ -44,7 +48,7 @@ html{
 }
 
 .navbar{
-    background-color: var(--white);
+    background-color: var(--background);
     padding: 1.5rem 5vw;
     position: fixed;
     z-index: 10;
@@ -75,32 +79,46 @@ html{
     text-decoration: none;
 }
 
+.menu-item:hover {
+    padding: 1rem 1.5rem;
+}
+
 h3 {
     font-size: var(--large-font-size);
     font-weight: bold;
     line-height: 2.75rem;
+    background: none;
 }
 
 p {
     font-size: var(--small-font-size);
+    color: var(--copy-blue);
     font-weight: normal;
     line-height: 1.5rem;
     text-align: left;
     letter-spacing: 0.5px;
+    background: none;
 }
 
 i{
     padding: 0.5rem 0.5rem 0.5rem 0rem;
+    background: none;
+}
+
+div {
+    background: none;
 }
 
 a{
     color: var(--copy-orange);
     font-size: var(--small-font-size);
     text-decoration: none;
+    background: none;
 }
 
 a:hover {
     color: var(--copy-blue);
+    padding: 0.5rem;
     background-color: var(--secondary-orange);
     border-radius: var(--inner-radius);
     transition: var(--hover-transition);
@@ -159,8 +177,7 @@ button{
 }
 
 .primary-blue:hover {
-    color: var(--white);
-    background-color: var(--primary-blue);
+    background-color: var(--tertiary-blue);
     transition: var(--hover-transition);
 }
 
@@ -170,8 +187,7 @@ button{
 }
 
 .primary-orange:hover {
-    color: var(--secondary-orange);
-    background-color: var(--copy-orange);
+    background-color: var(--tertiary-orange);
     transition: var(--hover-transition);
 }
 
@@ -223,7 +239,7 @@ button{
 .about-section {
     min-height: 100vh;
     height: auto;
-    padding: 5vw 0 0 0;
+    padding: 5vw 0;
     align-items: center;
 }
 
@@ -241,7 +257,6 @@ button{
 
 .about-content {
     grid-column: 1/13;
-    background-color: var(--secondary-orange);
     row-gap: 30px;
     grid-template-rows: repeat(8,1fr);
     margin: 0;
@@ -249,11 +264,17 @@ button{
 }
 
 .about-card {
-    background-color: var(--white);
+    background-color: var(--highlight);
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-radius: var(--inner-small-radius);
+}
+
+.about-card:hover {
+    background-color: var(--tertiary-orange);
+    transform: scale(1.05);
+    transition: var(--hover-transition);
 }
 
 .about-card-header {
@@ -289,7 +310,7 @@ button{
 .house-section{
     min-height: 100vh;
     grid-template-rows: 0.2fr repeat(2,1fr);
-    background-color: var(--secondary-blue);
+    background-color: var(--tertiary-blue);
     margin: 0;
     padding: 5vw 5vw;
     height: auto;
@@ -303,7 +324,7 @@ button{
 
 .house-card{
     display: flex;
-    background-color: var(--white);
+    background-color: var(--highlight);
     border-radius: var(--outer-radius);
     padding: 1.5rem;
 }
@@ -349,6 +370,7 @@ button{
     flex-direction: row;
     align-items: center;
     column-gap: 0.5rem;
+    color: var(--copy-blue);
 }
 
 .house-card-title {
@@ -418,6 +440,7 @@ button{
     object-fit: cover;
     border-radius: var(--outer-radius);
     box-shadow: -0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.15);
+    z-index: 10;
 }
 
 .footer-right div {
@@ -439,6 +462,7 @@ button{
     flex-direction: row;
     align-items: center;
     row-gap: 1rem;
+    z-index: 10;
 }
 
 .footer-right-background {
@@ -448,7 +472,7 @@ button{
     height: 40%;
     width: 100%;
     border-radius: var(--inner-radius);
-    z-index: -1;
+    z-index: 1;
 }
 
 @media screen and (max-width: 768px) {
