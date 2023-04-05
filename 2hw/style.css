@@ -1,0 +1,283 @@
+:root {
+    --copy-blue: #c5c4c3;
+    --primary-blue: #21475a;
+    --secondary-blue: #162F3C;
+    --tertiary-blue: #0E1D25;
+
+    --background: #262626;
+    --highlight: #141414;
+
+    --outer-radius: 1rem;
+    --inner-radius: 0.5rem;
+    --inner-small-radius: 0.25rem;
+
+    --large-font-size: 2.125rem;
+    --medium-font-size: 1.125rem;
+    --small-font-size: 1rem;
+
+    --hover-transition: all 0.3s ease-in-out;
+
+    --shadow: 0px 4px 16px rgba(67, 81, 80, 0.1);
+}
+
+*{
+    box-sizing: border-box;
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-size: var(--large-font-size);
+    font-weight: bold;
+    line-height: 2.75rem;
+    background: none;
+    color: var(--copy-blue);
+}
+
+p {
+    font-size: var(--small-font-size);
+    color: var(--copy-blue);
+    font-weight: normal;
+    line-height: 1.5rem;
+    text-align: left;
+    letter-spacing: 0.5px;
+    background: none;
+}
+
+i{
+    padding: 0.5rem 0.5rem 0.5rem 0rem;
+    background: none;
+}
+
+div {
+    background: none;
+}
+
+a{
+    color: var(--copy-orange);
+    font-size: var(--small-font-size);
+    text-decoration: none;
+    background: none;
+}
+
+a:hover {
+    color: var(--copy-blue);
+    padding: 0.5rem;
+    background-color: var(--secondary-orange);
+    border-radius: var(--inner-radius);
+    transition: var(--hover-transition);
+}
+
+input {
+    border: 2px solid var(--secondary-blue);
+    padding: 1rem;
+    border-radius: var(--inner-radius);
+    font-size: var(--medium-font-size);
+    transition: var(--hover-transition);
+    color: var(--copy-blue);
+}
+
+input:focus {
+    border: 1px solid var(--tertiary-blue);
+    outline: none;
+}
+
+input::placeholder {
+    color: var(--copy-blue);
+    font-size: var(--medium-font-size);
+    opacity: 0.5;
+}
+
+input:focus{
+    border-bottom: 1px solid var(--primary-blue);
+    outline: none;
+    font-size: var(--medium-font-size);
+}
+
+select {
+    border: 1px solid var(--secondary-blue);
+    padding: 1rem;
+    color: var(--copy-blue);
+    background-color: var(--secondary-blue);
+
+}
+
+select:hover {
+    background-color: var(--tertiary-blue);
+    transition: var(--hover-transition);
+
+}
+
+button{
+    border: none;
+    outline: none;
+    padding: 1rem 1.5rem;
+    border-radius: var(--inner-radius);
+    cursor: pointer;
+    width: fit-content;
+}
+
+.dark {
+    color: var(--copy-blue);
+}
+
+.blue {
+    color: var(--primary-blue);
+}
+
+.orange {
+    color: var(--copy-orange);
+}
+
+.primary-blue {
+    color: var(--copy-blue);
+    background-color: var(--secondary-blue);
+}
+
+.primary-blue:hover {
+    background-color: var(--tertiary-blue);
+    transition: var(--hover-transition);
+}
+
+.bold{
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: var(--background);
+    color: var(--copy-blue);
+    border: 1px solid var(--highlight);
+  
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ul li:nth-child(odd) {
+    background-color: var(--highlight);
+}
+
+summary {
+    background: var(--primary-blue);
+    border-radius: var(--inner-radius);
+    color: var(--copy-blue);
+    font-size: var(--large-font-size);
+    font-weight: bold;
+    line-height: 2.75rem;
+    padding: 1rem;
+    margin: 2rem 0;
+
+}
+details[open] summary {
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.hero-section {
+    padding: 5vw 0 2vw;
+}
+
+.header {
+    grid-column: 2/12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    padding: 2rem 0rem;
+    border-radius: var(--outer-radius);
+
+}
+
+.add-container {
+    display: flex;
+    flex-direction: row;
+    padding: 4rem;
+    align-content: center;
+}
+
+.add-container input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    align-self: stretch;
+    min-width: 60vw;
+}
+
+.add-container button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+.list-section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10vw 5vw 10vw;
+}
+
+.delete-todo {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1rem;
+    background: none;
+}
+
+ul li.checked {
+    background: var(--tertiary-blue);
+}
+ul li.checked .todo-content{
+    text-decoration: line-through;
+}
+
+
+
+dialog {
+    position: fixed;    
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dialog-background);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+dialog > div:first-of-type {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.dialog-container {
+    display: block;
+    max-width: 50%;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--highlight);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 10vw;
+}
+
+.dialog-header h5 {
+    font-size: var(--medium-font-size);
+    color: var(--copy-blue);
+    background: none;
+    margin: 1rem;
+}
+

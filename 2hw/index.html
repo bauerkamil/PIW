@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO list</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    <section id="hero-section" class="hero-section grid">
+    <div class="header">
+        <h3>Your To Do List</h3>
+        <div class="add-container">
+            <input type="text" id="todo-input" placeholder="Your To Do item here..." onkeypress="addElementEnter(event)">
+            <select id="todo-list-select">
+                <option value="select">Choose a To-Do list</option>
+                <option value="asap">ASAP</option>
+                <option value="urgent">Urgent</option>
+                <option value="unimportant">Not important</option>
+              </select>
+            <button onclick="addElement()" class="button primary-blue">Add</span>
+
+        </div>
+      </div>
+    </section>
+    
+    <section class="list-section">
+        <details>
+            <summary>ASAP list</summary>
+            <ul id="asap-todo-list">
+            </ul>
+        </details>
+    
+        <details>
+            <summary>Urgent list</summary>
+            <ul id="urgent-todo-list">
+            </ul>
+        </details>
+    
+        <details>
+            <summary>Not so important list</summary>
+            <ul id="unimportant-todo-list">
+            </ul>
+        </details>        
+    </section>
+
+    <dialog id="delete-dialog">
+        <div>
+            <div class="dialog-container">
+                <div class="dialog-header">
+                    <h5>Remove the item?</h5>
+                </div>
+                <div class="dialog-footer">
+                    <button id="confirm-button" class="button primary-blue">Confirm</button>
+                    <button id="cancel-button" class="button  primary-blue" onclick="closeDialog()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        
+    </dialog>
+    <script src="./script.js"></script>
+</body>
+</html>
