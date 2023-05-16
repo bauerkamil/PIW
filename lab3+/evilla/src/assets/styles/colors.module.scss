@@ -1,0 +1,36 @@
+
+$box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+$copy-light: #3B3B3B ;
+$primary-light: #FFC044;
+$secondary-light: #e7d6a6;
+$tertiary-light: #ffebb4;
+
+$background-light: #FFFFFF;
+$highlight-light: #929292;
+
+$copy-dark: #c5c4c3;
+$primary-dark: #852c11;
+$secondary-dark: #382621;
+$tertiary-dark: #331600;
+
+$background-dark: #262626;
+$highlight-dark: #141414;
+
+:export {
+    boxShadow: $box-shadow;
+    
+    lightBackground: $background-light;
+    lightHighlight: $highlight-light;
+    lightCopyText: $copy-light;
+    lightPrimary: $primary-light;
+    lightSecondary: $secondary-light;
+    lightTertiary: $tertiary-light;
+
+    darkBackground: $background-dark;
+    darkHighlight: $highlight-dark;
+    darkCopyText: $copy-dark;
+    darkPrimary: $primary-dark;
+    darkSecondary: $secondary-dark;
+    darkTertiary: $tertiary-dark;
+}
