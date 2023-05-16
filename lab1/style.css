@@ -310,7 +310,6 @@ button{
 .house-section{
     min-height: 100vh;
     grid-template-rows: 0.2fr repeat(2,1fr);
-    background-color: var(--tertiary-blue);
     margin: 0;
     padding: 5vw 5vw;
     height: auto;
