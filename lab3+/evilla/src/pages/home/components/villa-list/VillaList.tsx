@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { IVillaInfo } from "../../../../shared/interfaces/IVillaInfo";
+import { useCallback, useEffect, useState } from "react";
+import { IVillaInfo } from "../../../../common/interfaces/IVillaInfo";
+import { IVillaFilters } from "../../../../common/interfaces/IVillaFilters";
 import { IVillaListProps } from "./IVillaListProps";
 import { VillaDetailsCard } from "./villa-details-short/VillaDetailsCard";
 import { Flex, Heading, SimpleGrid, Spacer } from "@chakra-ui/react";
 import { VillaFilters } from "../villa-filters/VillaFilters";
-import { IVillaFilters } from "../../../../shared/interfaces/IVillaFilters";
 
 export const VillaList = (props: IVillaListProps) => {
 
@@ -16,10 +16,6 @@ export const VillaList = (props: IVillaListProps) => {
         description: "",
         bedroomsNumber: 1
     });
-
-    useEffect(() => {
-        filterVillas();
-    }, [filters]);
 
     const estateList = filteredVillas.map((villa) =>
         <VillaDetailsCard
@@ -65,6 +61,16 @@ export const VillaList = (props: IVillaListProps) => {
 
         setFilteredVillas(filteredData)
     }
+
+    const cachedFilterSearchReviewers = useCallback(filterVillas, [filters, props.villas]);
+
+    useEffect(() => {
+        cachedFilterSearchReviewers();
+    }, [cachedFilterSearchReviewers]);
+
+    useEffect(() => {
+        setFilteredVillas(props.villas);
+    }, [props.villas]);
 
     return (
         <>

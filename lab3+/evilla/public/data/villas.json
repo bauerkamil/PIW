@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Villa nr 1",
+        "description": "description ",
+        "price": 1000,
+        "address": "Pl. Grunwaldzki 3",
+        "image": "https://amazingarchitecture.com/storage/1729/responsive-images/selina_villa_dubai_uae_gravity_studio_mohanad_albasha___media_library_original_1344_756.jpg",
+        "city": "Wrocław",
+        "bedrooms": 1,
+        "seller": "You!",
+        "sellerMail": "youremail@gmail.com"
+    },
+    {
+        "id": 2,
+        "name": "Villa nr 2",
+        "description": "description",
+        "price": 2000,
+        "address": "Nowowiejska 35",
+        "image": "https://amazingarchitecture.com/storage/1729/responsive-images/selina_villa_dubai_uae_gravity_studio_mohanad_albasha___media_library_original_1344_756.jpg",
+        "city": "Wrocław",
+        "bedrooms": 2,
+        "seller": "Cing Ciang Ciong",
+        "sellerMail": "youremail@gmail.com"
+    },
+    {
+        "id": 3,
+        "name": "Villa nr 3",
+        "description": "description",
+        "price": 3000,
+        "address": "Wybrzeże Wyspiańskiego 31",
+        "image": "https://amazingarchitecture.com/storage/1729/responsive-images/selina_villa_dubai_uae_gravity_studio_mohanad_albasha___media_library_original_1344_756.jpg",
+        "city": "Wrocław",
+        "bedrooms": 3,
+        "seller": "You!",
+        "sellerMail": "youremail@gmail.com"
+    }
+]

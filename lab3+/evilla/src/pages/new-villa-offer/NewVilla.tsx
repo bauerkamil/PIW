@@ -2,39 +2,39 @@ import React from "react";
 import { PageWrapper } from "../../components/page-wrapper/PageWrapper";
 import { INewVillaProps } from "./INewVillaProps";
 import { Input, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Textarea, Button } from "@chakra-ui/react";
-import { IVillaInfo } from "../../shared/interfaces/IVillaInfo";
+import { IVillaInfo } from "../../common/interfaces/IVillaInfo";
 import { useNavigate } from "react-router-dom";
 
 export const NewVilla = (props: INewVillaProps) => {
-    
+
     const navigate = useNavigate();
-    
+
     const [name, setName] = React.useState<string>("")
-    const handleNameChange = (e: any) => {setName(e.target.value)}
+    const handleNameChange = (e: any) => { setName(e.target.value) }
 
     const [city, setCity] = React.useState<string>("")
-    const handleCityChange = (e: any) => {setCity(e.target.value)}
+    const handleCityChange = (e: any) => { setCity(e.target.value) }
 
     const [address, setAddress] = React.useState<string>("")
-    const handleAddressChange = (e: any) => {setAddress(e.target.value)}
+    const handleAddressChange = (e: any) => { setAddress(e.target.value) }
 
     const [description, setDesc] = React.useState<string>("")
-    const handleDescChange = (e: any) => {setDesc(e.target.value)}
+    const handleDescChange = (e: any) => { setDesc(e.target.value) }
 
     const [bedrooms, setBedrooms] = React.useState<number>(1)
-    const handleBedroomsChange = (value: any) => {setBedrooms(value)}
+    const handleBedroomsChange = (value: any) => { setBedrooms(value) }
 
     const [price, setPrice] = React.useState<number>(0)
-    const handlePriceChange = (value: any) => {setPrice(value)}
+    const handlePriceChange = (value: any) => { setPrice(value) }
 
     const [image, setImage] = React.useState<string>("")
-    const handleImageChange = (e: any) => {setImage(e.target.value)}
-    
+    const handleImageChange = (e: any) => { setImage(e.target.value) }
+
     const [seller, setSeller] = React.useState<string>("")
-    const handleSellerChange = (e: any) => {setSeller(e.target.value)}
-    
+    const handleSellerChange = (e: any) => { setSeller(e.target.value) }
+
     const [sellerMail, setSellerMail] = React.useState<string>("")
-    const handleSellerMailChange = (e: any) => {setSellerMail(e.target.value)}
+    const handleSellerMailChange = (e: any) => { setSellerMail(e.target.value) }
 
     const onAddClick = () => {
         let newVilla: IVillaInfo = {
@@ -54,10 +54,10 @@ export const NewVilla = (props: INewVillaProps) => {
         navigate('/');
     }
 
-    return(
+    return (
         <PageWrapper>
             <label>Villa name</label>
-            <Input placeholder='Type here...' value={name} onChange={handleNameChange}/>
+            <Input placeholder='Type here...' value={name} onChange={handleNameChange} />
             <label>City</label>
             <Input placeholder='Type here...' value={city} onChange={handleCityChange} />
             <label>Address</label>
@@ -79,7 +79,7 @@ export const NewVilla = (props: INewVillaProps) => {
                 </NumberInputStepper>
             </NumberInput>
             <label>Description</label>
-            <Textarea  placeholder='Type here...' value={description} onChange={handleDescChange} />
+            <Textarea placeholder='Type here...' value={description} onChange={handleDescChange} />
             <label>Image url</label>
             <Input placeholder='Type here...' value={image} onChange={handleImageChange} />
             <label>Your name</label>

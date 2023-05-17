@@ -1,4 +1,4 @@
-import { IVillaFilters } from "../../../../shared/interfaces/IVillaFilters";
+import { IVillaFilters } from "../../../../common/interfaces/IVillaFilters";
 
 export interface IVillaFiltersProps {
     filters: IVillaFilters;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDisclosure, Button, Divider, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Input, DrawerFooter, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Textarea } from "@chakra-ui/react";
 import { IVillaFiltersProps } from "./IVillaFiltersProps";
 import { HamburgerIcon, TriangleUpIcon, TriangleDownIcon } from "@chakra-ui/icons";
-import { IVillaFilters } from '../../../../shared/interfaces/IVillaFilters';
+import { IVillaFilters } from '../../../../common/interfaces/IVillaFilters';
 
 
 export const VillaFilters = (props: IVillaFiltersProps) => {
