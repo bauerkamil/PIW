@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { PageWrapper } from "../../components/page-wrapper/PageWrapper";
-import { IVillaDetailsProps } from "./IVillaDetailsProps";
+import { IVillaMessageProps } from "./IVillaMessageProps";
 import { Button, Heading, Input, Textarea, useToast } from "@chakra-ui/react";
 
-export const VillaDetails = (props: IVillaDetailsProps) => {
-    const toast = useToast()
+export const VillaMessage = (props: IVillaMessageProps) => {
+    const toast = useToast();
     const { id } = useParams();
     const villaDetails = props.getVillaInfo(Number(id));
 

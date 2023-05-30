@@ -2,12 +2,16 @@ import { useContext } from "react";
 import { Button } from "@chakra-ui/react";
 import { UserActions } from "../../../../common/enums/UserActions";
 import { UserContext } from "../../../../common/providers/UserProvider";
+import { FavoritesContext } from "../../../../common/providers/FavoritesProvider";
+import { FavoritesActions } from "../../../../common/enums/FavoritesActions";
 
 export const Logout = () => {
-    const { dispatch } = useContext(UserContext);
+    const { dispatch: dispatchUser } = useContext(UserContext);
+    const { dispatch: dispatchFavorites } = useContext(FavoritesContext);
 
     const handleLogout = () => {
-        dispatch({ type: UserActions.ClearUser });
+        dispatchUser({ type: UserActions.ClearUser });
+        dispatchFavorites({ type: FavoritesActions.ClearFavorites });
 
     }
 

@@ -6,8 +6,15 @@ import { Navbar } from '../../components/navbar/Navbar';
 import { Home } from '../home/Home';
 import { NewVilla } from '../new-villa-offer/NewVilla'
 import { IVillaInfo } from '../../common/interfaces/IVillaInfo';
-import { VillaDetails } from '../villa-details/VillaDetails';
+import { VillaMessage } from '../villa-message/VillaMessage';
 import axios from 'axios';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { Favorites } from '../favorites/Favorites';
+
+library.add(faCirclePlus, faStar);
 
 const App = () => {
 
@@ -41,7 +48,8 @@ const App = () => {
           <Route index element={<Home villas={villas} />} />
           <Route path="home" element={<Home villas={villas} />} />
           <Route path='new' element={<NewVilla addNewVilla={addNewVilla} />} />
-          <Route path='villa-details/:id' element={<VillaDetails getVillaInfo={getVillaInfo} />} />
+          <Route path='villa-details/:id' element={<VillaMessage getVillaInfo={getVillaInfo} />} />
+          <Route path='favorites' element={<Favorites />} />
         </Route>
       </Routes>
     </Box>

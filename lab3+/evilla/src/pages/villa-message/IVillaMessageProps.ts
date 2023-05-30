@@ -1,5 +1,5 @@
 import { IVillaInfo } from "../../common/interfaces/IVillaInfo";
 
-export interface IVillaDetailsProps {
+export interface IVillaMessageProps {
     getVillaInfo: (id: number) => IVillaInfo | undefined;
 }

@@ -20,6 +20,7 @@ export const VillaList = (props: IVillaListProps) => {
     const estateList = filteredVillas.map((villa) =>
         <VillaDetailsCard
             key={villa.id}
+            villa={villa}
             {...villa}
         />
     );

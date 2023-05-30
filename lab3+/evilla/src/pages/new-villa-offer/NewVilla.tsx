@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { PageWrapper } from "../../components/page-wrapper/PageWrapper";
 import { INewVillaProps } from "./INewVillaProps";
-import { Input, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Textarea, Button } from "@chakra-ui/react";
+import { Input, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Textarea, Button, useToast } from "@chakra-ui/react";
 import { IVillaInfo } from "../../common/interfaces/IVillaInfo";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../common/providers/UserProvider";
 
 export const NewVilla = (props: INewVillaProps) => {
+
+
+    const toast = useToast();
+    const { state: user } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -30,28 +35,31 @@ export const NewVilla = (props: INewVillaProps) => {
     const [image, setImage] = React.useState<string>("")
     const handleImageChange = (e: any) => { setImage(e.target.value) }
 
-    const [seller, setSeller] = React.useState<string>("")
-    const handleSellerChange = (e: any) => { setSeller(e.target.value) }
-
-    const [sellerMail, setSellerMail] = React.useState<string>("")
-    const handleSellerMailChange = (e: any) => { setSellerMail(e.target.value) }
-
     const onAddClick = () => {
-        let newVilla: IVillaInfo = {
-            id: -1,
-            name: name,
-            city: city,
-            address: address,
-            description: description,
-            bedrooms: bedrooms,
-            price: price,
-            image: image,
-            seller: seller,
-            sellerMail: sellerMail
-        };
-        props.addNewVilla(newVilla);
+        if (user) {
+            let newVilla: IVillaInfo = {
+                id: -1,
+                name: name,
+                city: city,
+                address: address,
+                description: description,
+                bedrooms: bedrooms,
+                price: price,
+                image: image,
+                seller: user?.displayName,
+                sellerMail: user?.email
+            };
+            props.addNewVilla(newVilla);
 
-        navigate('/');
+            navigate('/');
+        } else {
+            toast({
+                title: 'You must be logged in to add new offer.',
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
+        }
     }
 
     return (
@@ -83,9 +91,9 @@ export const NewVilla = (props: INewVillaProps) => {
             <label>Image url</label>
             <Input placeholder='Type here...' value={image} onChange={handleImageChange} />
             <label>Your name</label>
-            <Input placeholder='Type here...' value={seller} onChange={handleSellerChange} />
+            <Input placeholder='Type here...' value={user?.displayName} isReadOnly={true} />
             <label>Your e-mail</label>
-            <Input placeholder='Type here...' value={sellerMail} onChange={handleSellerMailChange} />
+            <Input placeholder='Type here...' value={user?.email} isReadOnly={true} />
 
             <Button onClick={onAddClick} variant="solid">Add</Button>
         </PageWrapper>
