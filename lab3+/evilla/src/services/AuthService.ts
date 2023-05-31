@@ -4,13 +4,15 @@ import { auth } from "./firebaseinit";
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
-export const signInWithGoogle = async () => {
+export const signInWithGoogle = async (): Promise<User | null> => {
     try {
         const response = await signInWithPopup(auth, googleProvider);
         return response.user;
     } catch (err) {
         console.error(err);
     }
+
+    return null;
 }
 
 export const signInWithGithub = async (): Promise<User | null> => {
@@ -33,6 +35,6 @@ export const registerWithEmail = (email: string, password: string) => {
 }
 
 
-export const signOut = () => {
-    return auth.signOut();
+export const signOut = async (): Promise<void> => {
+    await auth.signOut();
 }

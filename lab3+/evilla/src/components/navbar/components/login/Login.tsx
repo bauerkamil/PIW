@@ -37,14 +37,18 @@ export const Login = () => {
 
     const loginGoogle = () => {
         signInWithGoogle().then((user: any) => {
-            dispatch({ type: UserActions.SetUser, payload: user });
-            onClose();
+            if (user) {
+                dispatch({ type: UserActions.SetUser, payload: user });
+                onClose();
+            }
         });
     }
     const loginGithub = () => {
         signInWithGithub().then((user: any) => {
-            dispatch({ type: UserActions.SetUser, payload: user });
-            onClose();
+            if (user) {
+                dispatch({ type: UserActions.SetUser, payload: user });
+                onClose();
+            }
         });
     }
 
