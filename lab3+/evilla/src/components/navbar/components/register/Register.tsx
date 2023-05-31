@@ -1,41 +1,53 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, InputGroup, InputRightElement, Alert, AlertIcon, AlertTitle, Divider, Flex, Tooltip } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { UserActions } from "../../../../common/enums/UserActions";
-import { IUser } from "../../../../common/interfaces/IUser";
 import { UserContext } from "../../../../common/providers/UserProvider";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { signInWithEmail, signInWithGithub, signInWithGoogle } from "../../../../services/AuthService";
+import { registerWithEmail } from "../../../../services/AuthService";
 import { User } from "firebase/auth";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
-export const Login = () => {
+export const Register = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef(null)
     const { dispatch } = useContext(UserContext);
 
     const [email, setEmail] = React.useState("");
+    const [displayName, setDisplayName] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [repeatPassword, setRepeatPassword] = React.useState("");
+
 
     const [show, setShow] = React.useState(false);
+    const [showRepeat, setShowRepeat] = React.useState(false);
+
     const [alert, setAlert] = React.useState("");
 
     const togglePwdShow = () => setShow(!show);
+    const toggleRepeatPwdShow = () => setShowRepeat(!showRepeat);
+
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
+    };
+    const handleDisplayNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDisplayName(e.target.value);
     };
     const handlePwdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
     };
 
-    const handleLogin = () => {
+    const handleRepeatPwdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setRepeatPassword(e.target.value);
+    };
+
+    const handleRegister = () => {
         if (!areCredentialsValid()) {
             return;
-        };
+        }
 
-        signInWithEmail(email, password).then((user: User | null) => {
+        registerWithEmail(email, displayName, password).then((user: User | null) => {
             if (user) {
                 dispatch({ type: UserActions.SetUser, payload: user });
                 onClose();
@@ -43,22 +55,6 @@ export const Login = () => {
         });
     };
 
-    const loginGoogle = () => {
-        signInWithGoogle().then((user: User | null) => {
-            if (user) {
-                dispatch({ type: UserActions.SetUser, payload: user });
-                onClose();
-            }
-        });
-    }
-    const loginGithub = () => {
-        signInWithGithub().then((user: User | null) => {
-            if (user) {
-                dispatch({ type: UserActions.SetUser, payload: user });
-                onClose();
-            }
-        });
-    }
 
     const areCredentialsValid = () => {
 
@@ -69,6 +65,11 @@ export const Login = () => {
 
         if (password === "") {
             setAlert("Password is required");
+            return false;
+        }
+
+        if (password !== repeatPassword) {
+            setAlert("Passwords must match");
             return false;
         }
 
@@ -93,8 +94,10 @@ export const Login = () => {
     }
     return (
         <>
-            <Button onClick={onModalOpen} >
-                Sign in
+            <Button onClick={onModalOpen} variant={"ghost"}>
+                <Tooltip label="Register">
+                    <FontAwesomeIcon icon={faUserPlus} size="xl" />
+                </Tooltip>
             </Button>
 
             <Modal
@@ -105,7 +108,7 @@ export const Login = () => {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Sign in</ModalHeader>
+                    <ModalHeader>Sign up</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         {getAlert()}
@@ -115,6 +118,14 @@ export const Login = () => {
                                 placeholder='Email'
                                 name="email"
                                 onChange={handleEmailChange} />
+                        </FormControl>
+
+                        <FormControl>
+                            <FormLabel>Display name</FormLabel>
+                            <Input
+                                placeholder='Your name'
+                                name="displayName"
+                                onChange={handleDisplayNameChange} />
                         </FormControl>
 
                         <FormControl mt={4}>
@@ -134,26 +145,29 @@ export const Login = () => {
                                 </InputRightElement>
                             </InputGroup>
                         </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Repeat password</FormLabel>
+                            <InputGroup size='md'>
+                                <Input
+                                    pr='4.5rem'
+                                    type={showRepeat ? 'text' : 'password'}
+                                    placeholder='Enter password'
+                                    name="password"
+                                    onChange={handleRepeatPwdChange}
+                                />
+                                <InputRightElement width='4.5rem'>
+                                    <Button h='1.75rem' size='sm' variant={"ghost"} onClick={toggleRepeatPwdShow}>
+                                        {show ? <ViewOffIcon /> : <ViewIcon />}
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
+                        </FormControl>
                     </ModalBody>
 
                     <ModalFooter>
-                        <Flex direction={"column"} rowGap={"0.5rem"} width={"100%"}>
-                            <Button mr={3} onClick={handleLogin}>
-                                Sign in
-                            </Button>
-                            <Divider />
-                            <Button onClick={loginGoogle}
-                                variant={"outline"} gap={"1rem"}>
-                                Sign in with Google
-                                <FontAwesomeIcon icon={faGoogle} />
-                            </Button>
-                            <Button onClick={loginGithub}
-                                variant={"outline"} gap={"1rem"}>
-                                Sign in with Github
-                                <FontAwesomeIcon icon={faGithub} />
-                            </Button>
-
-                        </Flex>
+                        <Button mr={3} onClick={handleRegister}>
+                            Sign up
+                        </Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

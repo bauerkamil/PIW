@@ -26,12 +26,31 @@ export const signInWithGithub = async (): Promise<User | null> => {
     return null;
 }
 
-export const signInWithEmail = (email: string, password: string) => {
-    return signInWithEmailAndPassword(auth, email, password);
+export const signInWithEmail = async (email: string, password: string): Promise<User | null> => {
+    try {
+        const response = await signInWithEmailAndPassword(auth, email, password);
+        return response.user;
+    } catch (err) {
+        console.error(err);
+    }
+
+    return null;
 }
 
-export const registerWithEmail = (email: string, password: string) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+export const registerWithEmail = async (email: string, displayName: string, password: string): Promise<User | null> => {
+    let user = null;
+    try {
+        const response = await createUserWithEmailAndPassword(auth, email, password);
+
+        if (auth.currentUser) {
+            await updateProfile(auth.currentUser, { displayName })
+        }
+        return auth.currentUser;
+    } catch (err) {
+        console.error(err);
+    }
+
+    return null;
 }
 
 

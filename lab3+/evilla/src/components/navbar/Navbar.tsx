@@ -7,8 +7,9 @@ import { LogoIcon } from "../../assets/icons/LogoIcon";
 import { HomeIcon } from "../../assets/icons/HomeIcon";
 import ToggleThemeButton from "../toggle-theme-button/ToggleThemeButton";
 import { LoginLogout } from "./components/LoginLogout";
-import { faStar, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Register } from "./components/register/Register";
 
 export const Navbar = () => {
   const navbarStyles = useStyleConfig("Background");
@@ -29,11 +30,11 @@ export const Navbar = () => {
             </Link>
             <Link to={"/new"}>
               <Tooltip label="Add your offer">
-                <FontAwesomeIcon icon={faUserPlus} size="xl" />
+                <FontAwesomeIcon icon={faFileCirclePlus} size="xl" />
               </Tooltip>
             </Link>
             <ToggleThemeButton />
-
+            <Register />
             <LoginLogout />
           </div>
         </div>
