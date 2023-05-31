@@ -8,13 +8,8 @@ import { NewVilla } from '../new-villa-offer/NewVilla'
 import { IVillaInfo } from '../../common/interfaces/IVillaInfo';
 import { VillaMessage } from '../villa-message/VillaMessage';
 import axios from 'axios';
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Favorites } from '../favorites/Favorites';
 
-library.add(faCirclePlus, faStar);
 
 const App = () => {
 

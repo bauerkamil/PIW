@@ -1,9 +1,12 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, InputGroup, InputRightElement, Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, InputGroup, InputRightElement, Alert, AlertIcon, AlertTitle, Divider, Flex } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { UserActions } from "../../../../common/enums/UserActions";
 import { IUser } from "../../../../common/interfaces/IUser";
 import { UserContext } from "../../../../common/providers/UserProvider";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signInWithGithub, signInWithGoogle } from "../../../../services/AuthService";
 
 export const Login = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -15,26 +18,6 @@ export const Login = () => {
 
     const [show, setShow] = React.useState(false);
     const [alert, setAlert] = React.useState("");
-
-
-
-    const users: IUser[] = [
-        {
-            email: "1@test.com",
-            password: "test123",
-            displayName: "User1",
-        },
-        {
-            email: "2@test.com",
-            password: "test123",
-            displayName: "User2",
-        },
-        {
-            email: "3@test.com",
-            password: "test123",
-            displayName: "User3",
-        },
-    ];
 
     const togglePwdShow = () => setShow(!show)
 
@@ -49,13 +32,21 @@ export const Login = () => {
         if (!areCredentialsValid()) {
             return;
         }
-        let user = users.find((user) => user.email === email);
-        if (user && user.password === password) {
-            dispatch({ type: UserActions.SetUser, payload: user });
-            setAlert("");
-            onClose();
-        }
+
     };
+
+    const loginGoogle = () => {
+        signInWithGoogle().then((user: any) => {
+            dispatch({ type: UserActions.SetUser, payload: user });
+            onClose();
+        });
+    }
+    const loginGithub = () => {
+        signInWithGithub().then((user: any) => {
+            dispatch({ type: UserActions.SetUser, payload: user });
+            onClose();
+        });
+    }
 
     const areCredentialsValid = () => {
 
@@ -113,7 +104,7 @@ export const Login = () => {
                         </FormControl>
 
                         <FormControl mt={4}>
-                            <FormLabel>Passowrd</FormLabel>
+                            <FormLabel>Password</FormLabel>
                             <InputGroup size='md'>
                                 <Input
                                     pr='4.5rem'
@@ -132,9 +123,23 @@ export const Login = () => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button mr={3} onClick={handleLogin}>
-                            Sign in
-                        </Button>
+                        <Flex direction={"column"} rowGap={"0.5rem"} width={"100%"}>
+                            <Button mr={3} onClick={handleLogin}>
+                                Sign in
+                            </Button>
+                            <Divider />
+                            <Button onClick={loginGoogle}
+                                variant={"outline"} gap={"1rem"}>
+                                Sign in with Google
+                                <FontAwesomeIcon icon={faGoogle} />
+                            </Button>
+                            <Button onClick={loginGithub}
+                                variant={"outline"} gap={"1rem"}>
+                                Sign in with Github
+                                <FontAwesomeIcon icon={faGithub} />
+                            </Button>
+
+                        </Flex>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

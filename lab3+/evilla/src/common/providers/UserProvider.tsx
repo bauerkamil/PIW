@@ -1,9 +1,9 @@
 import { Dispatch, PropsWithChildren, createContext, useReducer } from "react";
-import { IUser } from "../interfaces/IUser";
 import { UserAction, UserReducer } from "../reducers/UserReducer";
+import { User } from "firebase/auth";
 
 interface InitialState {
-    state?: IUser; //i am very much aware that this should be a different interface that does not have password, but im too lazy
+    state?: User;
     dispatch: Dispatch<UserAction>;
 }
 

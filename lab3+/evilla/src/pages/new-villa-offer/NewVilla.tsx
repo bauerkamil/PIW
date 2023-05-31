@@ -46,8 +46,8 @@ export const NewVilla = (props: INewVillaProps) => {
                 bedrooms: bedrooms,
                 price: price,
                 image: image,
-                seller: user?.displayName,
-                sellerMail: user?.email
+                seller: user?.displayName?.toString() ?? "",
+                sellerMail: user?.email?.toString() ?? ""
             };
             props.addNewVilla(newVilla);
 
@@ -91,9 +91,9 @@ export const NewVilla = (props: INewVillaProps) => {
             <label>Image url</label>
             <Input placeholder='Type here...' value={image} onChange={handleImageChange} />
             <label>Your name</label>
-            <Input placeholder='Type here...' value={user?.displayName} isReadOnly={true} />
+            <Input placeholder='Type here...' value={user?.displayName?.toString()} isReadOnly={true} />
             <label>Your e-mail</label>
-            <Input placeholder='Type here...' value={user?.email} isReadOnly={true} />
+            <Input placeholder='Type here...' value={user?.email?.toString()} isReadOnly={true} />
 
             <Button onClick={onAddClick} variant="solid">Add</Button>
         </PageWrapper>

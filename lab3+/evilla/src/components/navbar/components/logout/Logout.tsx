@@ -4,14 +4,18 @@ import { UserActions } from "../../../../common/enums/UserActions";
 import { UserContext } from "../../../../common/providers/UserProvider";
 import { FavoritesContext } from "../../../../common/providers/FavoritesProvider";
 import { FavoritesActions } from "../../../../common/enums/FavoritesActions";
+import { signOut } from "../../../../services/AuthService";
 
 export const Logout = () => {
     const { dispatch: dispatchUser } = useContext(UserContext);
     const { dispatch: dispatchFavorites } = useContext(FavoritesContext);
 
     const handleLogout = () => {
-        dispatchUser({ type: UserActions.ClearUser });
-        dispatchFavorites({ type: FavoritesActions.ClearFavorites });
+        signOut().then(() => {
+
+            dispatchUser({ type: UserActions.ClearUser });
+            dispatchFavorites({ type: FavoritesActions.ClearFavorites });
+        });
 
     }
 

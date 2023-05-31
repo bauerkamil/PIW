@@ -1,13 +1,13 @@
 import { Reducer } from "react";
 import { UserActions } from "../enums/UserActions";
-import { IUser } from "../interfaces/IUser";
+import { User } from "firebase/auth";
 
 export interface UserAction {
     type: UserActions;
     payload?: any;
 }
 
-export const UserReducer: Reducer<IUser | undefined, UserAction> = (
+export const UserReducer: Reducer<User | undefined, UserAction> = (
     state,
     action
 ) => {

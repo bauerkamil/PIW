@@ -11,7 +11,7 @@ export const Home = (props: IHomeProps) => {
 
   const getWelcomeText = () => {
     if (user) {
-      return (<div className={styles.text}>Welcome, {user?.displayName}</div>);
+      return (<div className={styles.text}>Welcome, {user?.displayName ?? user.email}</div>);
     }
   }
   return (
