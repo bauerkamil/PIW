@@ -1,14 +1,12 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, InputGroup, InputRightElement, Alert, AlertIcon, AlertTitle, Divider, Flex, Tooltip } from "@chakra-ui/react";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, InputGroup, InputRightElement, Alert, AlertIcon, AlertTitle, Divider, Flex } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { UserActions } from "../../../../common/enums/UserActions";
-import { IUser } from "../../../../common/interfaces/IUser";
 import { UserContext } from "../../../../common/providers/UserProvider";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signInWithEmail, signInWithGithub, signInWithGoogle } from "../../../../services/AuthService";
 import { User } from "firebase/auth";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
 export const Login = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()

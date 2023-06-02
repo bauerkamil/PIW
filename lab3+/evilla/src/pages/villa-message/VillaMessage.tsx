@@ -1,21 +1,30 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { PageWrapper } from "../../components/page-wrapper/PageWrapper";
-import { IVillaMessageProps } from "./IVillaMessageProps";
 import { Button, Heading, Input, Textarea, useToast } from "@chakra-ui/react";
+import { IVillaInfo } from "../../common/interfaces/IVillaInfo";
+import { getVillaById } from "../../services/VillaService";
 
-export const VillaMessage = (props: IVillaMessageProps) => {
+export const VillaMessage = () => {
     const toast = useToast();
     const { id } = useParams();
-    const villaDetails = props.getVillaInfo(Number(id));
+    //const villaDetails = props.getVillaInfo(Number(id));
+    const [villaDetails, setVillaDetails] = useState<IVillaInfo>();
 
     const msgTitleInputRef = useRef<HTMLInputElement>(null);
     const messageInputRef = useRef<HTMLTextAreaElement>(null);
 
 
     useEffect(() => {
+        if (id) {
+            getVillaById(id).then((villa) => {
+                setVillaDetails(villa);
+            });
+        };
+
         msgTitleInputRef.current?.focus();
-    }, []);
+
+    }, [id]);
 
 
     const sendMessage = () => {

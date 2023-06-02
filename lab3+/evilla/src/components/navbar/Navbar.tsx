@@ -10,9 +10,12 @@ import { LoginLogout } from "./components/LoginLogout";
 import { faStar, faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Register } from "./components/register/Register";
+import { UserContext } from "../../common/providers/UserProvider";
 
 export const Navbar = () => {
   const navbarStyles = useStyleConfig("Background");
+
+  const { state: user } = React.useContext(UserContext);
 
   return (
     <>
@@ -28,11 +31,13 @@ export const Navbar = () => {
             <Link to={"/favorites"}>
               <FontAwesomeIcon icon={faStar} size="xl" />
             </Link>
-            <Link to={"/new"}>
-              <Tooltip label="Add your offer">
-                <FontAwesomeIcon icon={faFileCirclePlus} size="xl" />
-              </Tooltip>
-            </Link>
+            {(user) &&
+              <Link to={"/new"}>
+                <Tooltip label="Add your offer">
+                  <FontAwesomeIcon icon={faFileCirclePlus} size="xl" />
+                </Tooltip>
+              </Link>
+            }
             <ToggleThemeButton />
             <Register />
             <LoginLogout />

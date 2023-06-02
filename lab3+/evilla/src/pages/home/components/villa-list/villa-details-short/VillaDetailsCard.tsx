@@ -1,11 +1,12 @@
+import { useContext } from "react";
 import { Card, CardBody, CardFooter, Divider, Heading, Stack, Image, Text, Button, Flex, Spacer, CardHeader, Tooltip } from "@chakra-ui/react";
 import { IVillaDetailsCardProps } from "./IVillaDetailsCardProps";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
+import { faCirclePlus, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FavoritesContext } from "../../../../../common/providers/FavoritesProvider";
 import { FavoritesActions } from "../../../../../common/enums/FavoritesActions";
+import { UserContext } from "../../../../../common/providers/UserProvider";
 
 export const VillaDetailsCard = (props: IVillaDetailsCardProps) => {
   const { id,
@@ -17,10 +18,22 @@ export const VillaDetailsCard = (props: IVillaDetailsCardProps) => {
     image
   } = props.villa;
 
+  const { state: user } = useContext(UserContext);
+
   const { dispatch: dispatchFavorites } = useContext(FavoritesContext);
 
   const addToFavorites = () => {
     dispatchFavorites({ type: FavoritesActions.AddFavorite, payload: props.villa });
+  };
+
+  const getEditLink = () => {
+    if (user && user.email === props.villa.sellerMail) {
+      return (
+        <Link to={`/edit/${id}`} >
+          <FontAwesomeIcon icon={faPenToSquare} />
+        </Link>
+      )
+    }
   }
 
   return (
@@ -29,11 +42,14 @@ export const VillaDetailsCard = (props: IVillaDetailsCardProps) => {
         <Flex width={"100%"}>
           <Heading size='md'>{name}</Heading>
           <Spacer />
-          <Tooltip label="Add to favorites">
-            <button onClick={addToFavorites}>
-              <FontAwesomeIcon icon={faCirclePlus} />
-            </button>
-          </Tooltip>
+          <Flex gap={"1rem"}>
+            {getEditLink()}
+            <Tooltip label="Add to favorites">
+              <button onClick={addToFavorites}>
+                <FontAwesomeIcon icon={faCirclePlus} />
+              </button>
+            </Tooltip>
+          </Flex>
         </Flex>
       </CardHeader>
       <CardBody>
