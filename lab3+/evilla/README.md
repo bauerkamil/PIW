@@ -1,6 +1,6 @@
 # Evilla
 
-this is a react app for PIW laboratory
+this is a React app for PIW laboratory
 
 
-available under https://evilla-c87f3.web.app
+[HE ONE-HANDEDLY CREATED THIS APP!!! SEE HOW](https://evilla-c87f3.web.app)
